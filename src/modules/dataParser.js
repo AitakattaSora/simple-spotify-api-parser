@@ -9,21 +9,13 @@ module.exports = parseData = ({ items }, offset) => {
       (el) => el.height === 640
     )[0].url;
 
-    const artists = [];
-
-    artistsArray.forEach((a, i) => {
-      if (i === artistsArray.length - 1 || artistsArray.length === 1) {
-        return (artists += a.name);
-      }
-
-      artists += a.name + ', ';
-    });
+    const artists = artistsArray.map((artist) => artist.name);
 
     const name = item.track.name;
 
     songsData.push({
       id: i + offset + 1,
-      artist: artists,
+      artists,
       track: name,
       album: {
         name: albumName,
